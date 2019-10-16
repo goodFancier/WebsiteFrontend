@@ -1,0 +1,27 @@
+.ui-questions-button{
+    display: inline-block;
+}
+
+.questionLayout {
+    margin-left: 50px !important;
+}
+
+div[id='questionLabelFindUsers']{
+    margin-top: 10px;
+}
+
+.questionsLabel {
+    margin-top: 10px;
+}
+
+.questionsTitle {
+    font-size: 20px;
+}
+
+.questionsUserMenu li {
+    padding: 0 !important;
+}
+
+div[id='questionLabelFindUsers'] div{
+    z-index: 2000 !important;
+}

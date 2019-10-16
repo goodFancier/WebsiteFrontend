@@ -1,0 +1,13 @@
+input[id='searchInput'] {
+    width: 100% !important;
+}
+
+div[id='searchInputWrapper'] {
+    width: 200px;
+    padding: 13px;
+}
+
+.menu {
+    height: 40px;
+    line-height: 40px !important;
+}
