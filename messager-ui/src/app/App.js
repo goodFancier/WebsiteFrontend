@@ -103,7 +103,6 @@ class App extends Component {
                            onLogout={this.handleLogout}/>
                 <Sidebar className="sidebar"/>
                 <Content className="app-content">
-                    <Usermenu className="usermenu" onLogout={this.handleLogout}/>
                     <div className="container">
                         <Switch>
                             <Route exact path="/"

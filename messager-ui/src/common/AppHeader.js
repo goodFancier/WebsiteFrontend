@@ -5,10 +5,12 @@ import {
 } from 'react-router-dom';
 import './AppHeader.css';
 import {Redirect} from 'react-router-dom'
-import {Layout, Menu, Dropdown, Icon} from 'antd';
+import {Layout, Menu, Dropdown, Icon, notification} from 'antd';
 import Search from '../common/Search';
 import Questions from '../user/questions/Questions'
 import {signup} from "../util/APIUtils";
+import Usermenu from "./Usermenu";
+import {ACCESS_TOKEN} from "../constants";
 
 const Header = Layout.Header;
 
@@ -16,6 +18,22 @@ class AppHeader extends Component {
     constructor(props) {
         super(props);
         this.handleMenuClick = this.handleMenuClick.bind(this);
+        this.handleLogout = this.handleLogout.bind(this);
+    }
+
+    handleLogout(redirectTo = "/", notificationType = "success", description = "You're successfully logged out.") {
+        localStorage.removeItem(ACCESS_TOKEN);
+
+        this.setState({
+            currentUser: null,
+            isAuthenticated: false
+        });
+        this.props.history.push(redirectTo);
+        window.location.reload();
+        notification[notificationType]({
+            message: 'AskLion',
+            description: description,
+        });
     }
 
     handleMenuClick({key}) {
@@ -45,19 +63,18 @@ class AppHeader extends Component {
         if (this.props.currentUser) {
             menuItems = [
                 <div className="navbar-buttons navbar-auth-buttons">
-                    <button onClick={this.redirectToProfile} type="button" className="btn btn-default">
-                        <span>{this.props.currentUser.username}</span>
-                    </button>
+                    <Usermenu className="usermenu btn btn-default" onLogout={this.handleLogout}
+                              currentUser={this.props.currentUser}/>
                 </div>
             ];
         } else {
             menuItems = [
                 <div className="navbar-buttons navbar-auth-buttons">
                     <button onClick={this.redirectToLogin} type="button" className="btn btn-default">
-                        <span>Sign in</span>
+                        <span>Войти</span>
                     </button>
                     <button id={'signup'} onClick={this.redirectToSignup} type="button" className="btn btn-default">
-                        <span>Sign up</span>
+                        <span>Зарегистрироваться</span>
                     </button>
                 </div>
             ];
@@ -67,12 +84,26 @@ class AppHeader extends Component {
             <Header className="navbar">
                 <div className="container">
                     <div className="app-title">
-                        <Link to="/">AskLion</Link>
+                        <Link to="/">Онлайн магазин</Link>
                     </div>
-                    <Search/>
                     <div className="navbar-buttons ui-questions-button">
                         <button onClick={this.redirectToQuestionMenu} type="button" className="btn btn-default">
-                            <span>Questions</span>
+                            <span>Акции</span>
+                        </button>
+                    </div>
+                    <div className="navbar-buttons ui-questions-button">
+                        <button onClick={this.redirectToQuestionMenu} type="button" className="btn btn-default">
+                            <span>Каталог товаров</span>
+                        </button>
+                    </div>
+                    <div className="navbar-buttons ui-questions-button">
+                        <button onClick={this.redirectToQuestionMenu} type="button" className="btn btn-default">
+                            <span>Наши партнёры</span>
+                        </button>
+                    </div>
+                    <div className="navbar-buttons ui-questions-button">
+                        <button onClick={this.redirectToQuestionMenu} type="button" className="btn btn-default">
+                            <span>О нас</span>
                         </button>
                     </div>
                     {menuItems}
