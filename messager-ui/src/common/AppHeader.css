@@ -6,7 +6,6 @@
 .app-title a {
     text-decoration: none;
     line-height: 16px;
-    font-size: 21px !important;
     display: inline-block;
 }
 
@@ -29,7 +28,7 @@
     line-height: 0px !important;
 }
 
-.navbar a{
+.navbar a {
     color: hsla(0, 0%, 100%, .7);
     float: left;
     display: block;
@@ -129,4 +128,23 @@ button[id='signup'] {
         padding: 0 15px;
         margin: 0 -15px;
     }
-}  
+}
+
+.header-link-margin {
+    margin-left: 15px;
+}
+
+.shop-name-title a {
+    line-height: 13px;
+    font-size: 21px !important;
+}
+
+.basket-header-button {
+    margin-top: 6px !important;
+    float: right;
+    width: 32px;
+    height: 32px;
+    background: none;
+    background-image: url('../resources/shopBasket.svg');
+    border: none;
+}
