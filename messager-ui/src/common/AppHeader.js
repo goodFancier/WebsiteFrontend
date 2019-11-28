@@ -65,7 +65,8 @@ class AppHeader extends Component {
                 <div className="navbar-buttons navbar-auth-buttons">
                     <Usermenu className="usermenu btn btn-default" onLogout={this.handleLogout}
                               currentUser={this.props.currentUser}/>
-                </div>
+                </div>,
+                <button type="button" className="app-title shop-name-title btn btn-default basket-header-button" onClick={this.redirectToProfile}/>
             ];
         } else {
             menuItems = [
@@ -83,28 +84,20 @@ class AppHeader extends Component {
         return (
             <Header className="navbar">
                 <div className="container">
-                    <div className="app-title">
+                    <div className="app-title shop-name-title">
                         <Link to="/">Онлайн магазин</Link>
                     </div>
-                    <div className="navbar-buttons ui-questions-button">
-                        <button onClick={this.redirectToQuestionMenu} type="button" className="btn btn-default">
-                            <span>Акции</span>
-                        </button>
+                    <div className="app-title header-link-margin">
+                        <Link to="/">Акции</Link>
                     </div>
-                    <div className="navbar-buttons ui-questions-button">
-                        <button onClick={this.redirectToQuestionMenu} type="button" className="btn btn-default">
-                            <span>Каталог товаров</span>
-                        </button>
+                    <div className="app-title header-link-margin">
+                        <Link to="/">Каталог товаров</Link>
                     </div>
-                    <div className="navbar-buttons ui-questions-button">
-                        <button onClick={this.redirectToQuestionMenu} type="button" className="btn btn-default">
-                            <span>Наши партнёры</span>
-                        </button>
+                    <div className="app-title header-link-margin">
+                        <Link to="/">Наши партнёры</Link>
                     </div>
-                    <div className="navbar-buttons ui-questions-button">
-                        <button onClick={this.redirectToQuestionMenu} type="button" className="btn btn-default">
-                            <span>О нас</span>
-                        </button>
+                    <div className="app-title header-link-margin">
+                        <Link to="/">О нас</Link>
                     </div>
                     {menuItems}
                 </div>
