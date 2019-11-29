@@ -17,7 +17,7 @@ import Questions from '../user/questions/Questions'
 import Profile from '../user/profile/Profile';
 import AppHeader from '../common/AppHeader';
 import Sidebar from '../common/Sidebar'
-import Usermenu from '../common/Usermenu'
+import Bucket from '../user/bucket/Bucket'
 import NotFound from '../common/NotFound';
 import LoadingIndicator from '../common/LoadingIndicator';
 import PrivateRoute from '../common/PrivateRoute';
@@ -121,6 +121,7 @@ class App extends Component {
                                    render={(props) => <Profile {...props}  />}>
                             </Route>
                             <Route path="/questions" component={Questions}/>
+                            <Route path="/shopBucket" component={Bucket}/>
                             <PrivateRoute authenticated={this.state.isAuthenticated} path="/poll/new"
                                           component={NewPoll} handleLogout={this.handleLogout}></PrivateRoute>
                             <Route component={NotFound}></Route>
