@@ -54,9 +54,18 @@ class AppHeader extends Component {
         this.props.history.push(`/users/${this.props.currentUser.username}/profile`);
     }
 
+    redirectToProfile = () => {
+        this.props.history.push(`/users/${this.props.currentUser.username}/profile`);
+    }
+
     redirectToQuestionMenu = () => {
         this.props.history.push("/questions");
     }
+
+    redirectToBucket = () => {
+        this.props.history.push("/shopBucket");
+    }
+
 
     render() {
         let menuItems;
@@ -66,7 +75,8 @@ class AppHeader extends Component {
                     <Usermenu className="usermenu btn btn-default" onLogout={this.handleLogout}
                               currentUser={this.props.currentUser}/>
                 </div>,
-                <button type="button" className="app-title shop-name-title btn btn-default basket-header-button" onClick={this.redirectToProfile}/>
+                <button type="button" className="app-title shop-name-title btn btn-default basket-header-button"
+                        onClick={this.redirectToBucket}/>
             ];
         } else {
             menuItems = [
