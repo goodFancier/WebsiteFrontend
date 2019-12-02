@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import './Bucket.css';
 import {Route, withRouter, Redirect} from "react-router-dom";
 import {Table, Col, Row, Skeleton, Switch, Card, Icon, Avatar, Button} from 'antd';
+import {getUserBucketGoods} from "../../util/APIUtils";
 
 const {Column, ColumnGroup} = Table;
 const {Meta} = Card;
@@ -44,22 +45,40 @@ const rowSelection = {
     }),
 };
 
-const tableClass = 'omg';
-
 class Bucket extends Component {
     state = {
         query: '',
-        users: [],
+        userGoods: [],
         lastParticipants: []
     };
 
     constructor(props) {
         super(props);
+        this.initUserBuckerGoods(this.props.currentUser);
     }
 
     onChange = checked => {
         this.setState({loading: !checked});
     };
+
+    redirectToGood = () => {
+        this.initUserBuckerGoods(this.props.currentUser);
+        this.props.history.push("/login");
+    }
+
+    initUserBuckerGoods(currentUser) {
+        let users = getUserBucketGoods(currentUser);
+        users
+            .then(response => {
+                this.setState(this.initGoodsResponseValues(response));
+            });
+    }
+
+    initGoodsResponseValues(response) {
+        for (let i = 0; i < response.length; i++) {
+            this.state.userGoods.push({label: response[i]});
+        }
+    }
 
 
     render() {
@@ -89,7 +108,7 @@ class Bucket extends Component {
                 <Col span={4} bordered={true} className="order-panel">
                     <div>
 
-                        <Card style={{width: 300}}>
+                        <Card className="total-sum" style={{width: 300}}>
                             <Meta
                                 title="Общая сумма к оплате: TODO"
                                 description="Заказ будет доставлен 14 октября"
@@ -99,15 +118,32 @@ class Bucket extends Component {
                             </Button>
                         </Card>
 
-                        <Card
-                            style={{width: 300, marginTop: 16}}
-                            actions={[
-                                <Icon type="setting" key="setting"/>,
-                                <Icon type="edit" key="edit"/>,
-                                <Icon type="ellipsis" key="ellipsis"/>,
-                            ]}
+                        <Card className="advertisement" hoverable title="Может быть интересно"
+                              style={{width: 240}}
+                              cover={<img alt="example" align="middle"
+                                          src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png"/>}
+                              style={{width: 300, marginTop: 16}}
+                              actions={[
+                                  <div onClick={this.redirectToGood}>
+                                      <button>Посмотреть предложение</button>
+                                  </div>
+                              ]}
                         >
+                            <Meta title="Стол компьютерный 2x1" description="$37.55"/>
+                        </Card>
 
+                        <Card className="advertisement" hoverable title="Может быть интересно"
+                              style={{width: 240}}
+                              cover={<img alt="example" align="middle"
+                                          src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png"/>}
+                              style={{width: 300, marginTop: 16}}
+                              actions={[
+                                  <div onClick={this.redirectToGood}>
+                                      <button>Посмотреть предложение</button>
+                                  </div>
+                              ]}
+                        >
+                            <Meta title="Пылесос для влажной уборки" description="$25.99"/>
                         </Card>
                     </div>
                 </Col>

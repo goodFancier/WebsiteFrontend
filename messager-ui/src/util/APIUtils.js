@@ -136,3 +136,10 @@ export function getUserVotedPolls(username, page, size) {
         method: 'GET'
     });
 }
+
+export function getUserBucketGoods(userId) {
+    return request({
+        url: API_BASE_URL + "/userbucket/getUserGoods",
+        method: 'GET'
+    });
+}
