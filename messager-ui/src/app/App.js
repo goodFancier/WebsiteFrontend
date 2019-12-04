@@ -121,7 +121,9 @@ class App extends Component {
                                    render={(props) => <Profile {...props}  />}>
                             </Route>
                             <Route path="/questions" component={Questions}/>
-                            <Route currentUser={this.state.currentUser} path="/shopBucket" component={Bucket}/>
+                            <Route path="/shopBucket"
+                                   render={(props) => <Bucket currentUser={this.state.currentUser} {...props}    />}>
+                            </Route>
                             <PrivateRoute authenticated={this.state.isAuthenticated} path="/poll/new"
                                           component={NewPoll} handleLogout={this.handleLogout}></PrivateRoute>
                             <Route component={NotFound}></Route>

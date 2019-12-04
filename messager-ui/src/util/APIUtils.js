@@ -139,7 +139,7 @@ export function getUserVotedPolls(username, page, size) {
 
 export function getUserBucketGoods(userId) {
     return request({
-        url: API_BASE_URL + "/userbucket/getUserGoods",
+        url: API_BASE_URL + "/getUserGoods?userId=" + userId,
         method: 'GET'
     });
 }

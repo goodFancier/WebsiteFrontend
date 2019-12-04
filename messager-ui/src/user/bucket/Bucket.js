@@ -3,6 +3,7 @@ import './Bucket.css';
 import {Route, withRouter, Redirect} from "react-router-dom";
 import {Table, Col, Row, Skeleton, Switch, Card, Icon, Avatar, Button} from 'antd';
 import {getUserBucketGoods} from "../../util/APIUtils";
+import {formatDate} from "../../util/Helpers";
 
 const {Column, ColumnGroup} = Table;
 const {Meta} = Card;
@@ -49,7 +50,8 @@ class Bucket extends Component {
     state = {
         query: '',
         userGoods: [],
-        lastParticipants: []
+        lastParticipants: [],
+        loading: false
     };
 
     constructor(props) {
@@ -57,29 +59,23 @@ class Bucket extends Component {
         this.initUserBuckerGoods(this.props.currentUser);
     }
 
-    onChange = checked => {
-        this.setState({loading: !checked});
-    };
-
-    redirectToGood = () => {
-        this.initUserBuckerGoods(this.props.currentUser);
-        this.props.history.push("/login");
-    }
-
     initUserBuckerGoods(currentUser) {
-        let users = getUserBucketGoods(currentUser);
-        users
-            .then(response => {
-                this.setState(this.initGoodsResponseValues(response));
-            });
+        if (currentUser != null && currentUser.id != null) {
+            let users = getUserBucketGoods(currentUser.id);
+            users
+                .then(response => {
+                    this.setState(this.initGoodsResponseValues(response));
+                });
+        }
     }
 
     initGoodsResponseValues(response) {
         for (let i = 0; i < response.length; i++) {
-            this.state.userGoods.push({label: response[i]});
+            response[i].createdAt = formatDate(response[i].createdAt.epochSecond);
+            this.state.userGoods.push(response[i]);
+            this.setState({userGoodsasdas : this.state.userGoods})
         }
     }
-
 
     render() {
 
@@ -89,11 +85,11 @@ class Bucket extends Component {
                     <h2>Моя корзина</h2>
                     < Table
                         rowSelection={rowSelection}
-                        dataSource={data}
+                        dataSource={this.state.userGoods}
                     >
-                        <Column title="Наименование товара" dataIndex="name" key="firstName"/>
-                        <Column title="Стоимость" dataIndex="age" key="age"/>
-                        <Column title="Дата поступления на склад" dataIndex="address" key="address"/>
+                        <Column title="Наименование товара" dataIndex="name" key="name"/>
+                        <Column title="Стоимость" dataIndex="currentPrice" key="currentPrice"/>
+                        <Column title="Дата поступления на склад" dataIndex="createdAt" key="createdAt"/>
                         <Column
                             title="Действие"
                             key="action"
