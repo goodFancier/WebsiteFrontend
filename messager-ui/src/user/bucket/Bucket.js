@@ -1,39 +1,12 @@
 import React, {Component} from 'react'
 import './Bucket.css';
 import {Route, withRouter, Redirect} from "react-router-dom";
-import {Table, Col, Row, Skeleton, Switch, Card, Icon, Avatar, Button} from 'antd';
+import {Table, Col, Row, Card, Button} from 'antd';
 import {getUserBucketGoods} from "../../util/APIUtils";
 import {formatDate} from "../../util/Helpers";
 
-const {Column, ColumnGroup} = Table;
+const {Column} = Table;
 const {Meta} = Card;
-
-const data = [
-    {
-        key: '1',
-        name: 'John Brown',
-        age: 32,
-        address: 'New York No. 1 Lake Park',
-    },
-    {
-        key: '2',
-        name: 'Jim Green',
-        age: 42,
-        address: 'London No. 1 Lake Park',
-    },
-    {
-        key: '3',
-        name: 'Joe Black',
-        age: 32,
-        address: 'Sidney No. 1 Lake Park',
-    },
-    {
-        key: '4',
-        name: 'Disabled User',
-        age: 99,
-        address: 'Sidney No. 1 Lake Park',
-    },
-];
 
 // rowSelection object indicates the need for row selection
 const rowSelection = {

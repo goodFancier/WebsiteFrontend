@@ -143,3 +143,10 @@ export function getUserBucketGoods(userId) {
         method: 'GET'
     });
 }
+
+export function getCatalogueOfGoods() {
+    return request({
+        url: API_BASE_URL + "/getCatalogueOfGoods",
+        method: 'GET'
+    });
+}

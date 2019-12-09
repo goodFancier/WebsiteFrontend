@@ -58,8 +58,8 @@ class AppHeader extends Component {
         this.props.history.push(`/users/${this.props.currentUser.username}/profile`);
     }
 
-    redirectToQuestionMenu = () => {
-        this.props.history.push("/questions");
+    redirectToCatalogue = () => {
+        this.props.history.push("/catalogue");
     }
 
     redirectToBucket = () => {
@@ -101,7 +101,7 @@ class AppHeader extends Component {
                         <Link to="/">Акции</Link>
                     </div>
                     <div className="app-title header-link-margin">
-                        <Link to="/">Каталог товаров</Link>
+                        <Link onClick={this.redirectToCatalogue}>Каталог товаров</Link>
                     </div>
                     <div className="app-title header-link-margin">
                         <Link to="/">Наши партнёры</Link>
