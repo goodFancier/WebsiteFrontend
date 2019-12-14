@@ -1,6 +1,5 @@
 import React, {Component} from 'react'
 import './Bucket.css';
-import {Route, withRouter, Redirect} from "react-router-dom";
 import {Table, Col, Row, Card, Button} from 'antd';
 import {getUserBucketGoods} from "../../util/APIUtils";
 import {formatDate} from "../../util/Helpers";
@@ -46,7 +45,7 @@ class Bucket extends Component {
         for (let i = 0; i < response.length; i++) {
             response[i].createdAt = formatDate(response[i].createdAt.epochSecond);
             this.state.userGoods.push(response[i]);
-            this.setState({userGoodsasdas : this.state.userGoods})
+            this.setState({userGoods: this.state.userGoods})
         }
     }
 
@@ -121,6 +120,6 @@ class Bucket extends Component {
     }
 }
 
-export default withRouter(Bucket);
+export default Bucket;
 
 

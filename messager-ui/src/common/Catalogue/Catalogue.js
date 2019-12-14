@@ -1,8 +1,7 @@
 import React, {Component} from 'react'
 import './Catalogue.css';
-import {Route, withRouter, Redirect} from "react-router-dom";
-import {Table, Col, Row, Skeleton, Switch, Card, Icon, Avatar, Button, List} from 'antd';
-import {getUserBucketGoods, getCatalogueOfGoods} from "../../util/APIUtils";
+import {Table, Card, Icon, List} from 'antd';
+import {getCatalogueOfGoods} from "../../util/APIUtils";
 import {formatDate} from "../../util/Helpers";
 
 const {Column, ColumnGroup} = Table;
@@ -74,6 +73,6 @@ class Catalogue extends Component {
     }
 }
 
-export default withRouter(Catalogue);
+export default Catalogue;
 
 

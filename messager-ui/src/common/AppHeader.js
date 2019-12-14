@@ -6,8 +6,6 @@ import {
 import './AppHeader.css';
 import {Redirect} from 'react-router-dom'
 import {Layout, Menu, Dropdown, Icon, notification} from 'antd';
-import Search from '../common/Search';
-import Questions from '../user/questions/Questions'
 import {signup} from "../util/APIUtils";
 import Usermenu from "./Usermenu";
 import {ACCESS_TOKEN} from "../constants";
