@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import './Usermenu.css'
 import 'antd/dist/antd.css';
 import {Menu, Dropdown, Icon, notification} from 'antd';
-import {ACCESS_TOKEN} from "../constants";
 import {Route, withRouter, Redirect} from "react-router-dom";
 
 

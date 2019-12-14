@@ -1,4 +1,4 @@
-import {API_BASE_URL, POLL_LIST_SIZE, ACCESS_TOKEN} from '../constants';
+import {API_BASE_URL, ACCESS_TOKEN} from '../constants';
 
 const request = (options) => {
     const headers = new Headers({
@@ -21,31 +21,6 @@ const request = (options) => {
         );
 };
 
-export function getAllPolls(page, size) {
-    page = page || 0;
-    size = size || POLL_LIST_SIZE;
-
-    return request({
-        url: API_BASE_URL + "/polls?page=" + page + "&size=" + size,
-        method: 'GET'
-    });
-}
-
-export function createPoll(pollData) {
-    return request({
-        url: API_BASE_URL + "/polls",
-        method: 'POST',
-        body: JSON.stringify(pollData)
-    });
-}
-
-export function castVote(voteData) {
-    return request({
-        url: API_BASE_URL + "/polls/" + voteData.pollId + "/votes",
-        method: 'POST',
-        body: JSON.stringify(voteData)
-    });
-}
 
 export function login(loginRequest) {
     return request({
@@ -60,13 +35,6 @@ export function signup(signupRequest) {
         url: API_BASE_URL + "/auth/signup",
         method: 'POST',
         body: JSON.stringify(signupRequest)
-    });
-}
-
-export function search(username) {
-    return request({
-        url: API_BASE_URL + "/users/getBySearch?username=" + username,
-        method: 'POST'
     });
 }
 
@@ -117,22 +85,53 @@ export function getUserProfile(username) {
     });
 }
 
-export function getUserCreatedPolls(username, page, size) {
-    page = page || 0;
-    size = size || POLL_LIST_SIZE;
-
+export function getUserBucketGoods(userId) {
     return request({
-        url: API_BASE_URL + "/users/" + username + "/polls?page=" + page + "&size=" + size,
+        url: API_BASE_URL + "/getUserGoods?userId=" + userId,
         method: 'GET'
     });
 }
 
-export function getUserVotedPolls(username, page, size) {
-    page = page || 0;
-    size = size || POLL_LIST_SIZE;
-
+export function getCatalogueOfGoods() {
     return request({
-        url: API_BASE_URL + "/users/" + username + "/votes?page=" + page + "&size=" + size,
+        url: API_BASE_URL + "/getCatalogueOfGoods",
         method: 'GET'
     });
 }
+
+
+export function addToBucket(userId, goodId) {
+    return request({
+        url: API_BASE_URL + "/addToBucket?userId=" + userId + "&goodId=" + goodId,
+        method: 'GET'
+    });
+}
+
+export function deleteFromUserBucket(userId, goodId) {
+    return request({
+        url: API_BASE_URL + "/deleteFromUserBucket?userId=" + userId + "&goodId=" + goodId,
+        method: 'GET'
+    });
+}
+
+export function getBucketTotalSum(userId) {
+    return request({
+        url: API_BASE_URL + "/getBucketTotalSum?userId=" + userId,
+        method: 'GET'
+    });
+}
+
+export function getRandomGoods() {
+    return request({
+        url: API_BASE_URL + "/getRandomGoods",
+        method: 'GET'
+    });
+}
+
+export function loadPublicOffers() {
+    return request({
+        url: API_BASE_URL + "/getPublicOffers",
+        method: 'GET'
+    });
+}
+

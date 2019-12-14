@@ -9,20 +9,17 @@ import {
 import {getCurrentUser} from '../util/APIUtils';
 import {ACCESS_TOKEN} from '../constants';
 
-import PollList from '../poll/PollList';
-import NewPoll from '../poll/NewPoll';
 import Login from '../user/login/Login';
 import Signup from '../user/signup/Signup';
-import Questions from '../user/questions/Questions'
 import Profile from '../user/profile/Profile';
 import AppHeader from '../common/AppHeader';
-import Sidebar from '../common/Sidebar'
-import Bucket from '../user/bucket/Bucket'
+import Bucket from '../user/bucket/Bucket';
 import NotFound from '../common/NotFound';
+import Catalogue from '../catalogue/Catalogue';
 import LoadingIndicator from '../common/LoadingIndicator';
-import PrivateRoute from '../common/PrivateRoute';
 
 import {Layout, notification} from 'antd';
+import Offers from "../offers/Offers";
 
 const {Content} = Layout;
 
@@ -101,18 +98,12 @@ class App extends Component {
                 <AppHeader isAuthenticated={this.state.isAuthenticated}
                            currentUser={this.state.currentUser}
                            onLogout={this.handleLogout}/>
-                <Sidebar className="sidebar"/>
                 <Content className="app-content">
                     <div className="container">
                         <Switch>
-                            <Route exact path="/"
-                                   render={(props) => <PollList isAuthenticated={this.state.isAuthenticated}
-                                                                currentUser={this.state.currentUser}
-                                                                handleLogout={this.handleLogout} {...props} />}>
-                            </Route>
                             <Route path="/login"
-                                   render={(props) => <Login onLogin={this.handleLogin} {...props} />}></Route>
-                            <Route path="/signup" component={Signup}></Route>
+                                   render={(props) => <Login onLogin={this.handleLogin} {...props} />}/>
+                            <Route path="/signup" component={Signup}/>
                             <Route path="/users/:username/profile"
                                    render={(props) => <Profile isAuthenticated={this.state.isAuthenticated}
                                                                currentUser={this.state.currentUser} {...props}  />}>
@@ -120,11 +111,16 @@ class App extends Component {
                             <Route path="/users/:username"
                                    render={(props) => <Profile {...props}  />}>
                             </Route>
-                            <Route path="/questions" component={Questions}/>
-                            <Route path="/shopBucket" component={Bucket}/>
-                            <PrivateRoute authenticated={this.state.isAuthenticated} path="/poll/new"
-                                          component={NewPoll} handleLogout={this.handleLogout}></PrivateRoute>
-                            <Route component={NotFound}></Route>
+                            <Route path="/shopBucket"
+                                   render={(props) => <Bucket currentUser={this.state.currentUser} {...props}    />}>
+                            </Route>
+                            <Route path="/catalogue"
+                                   render={(props) => <Catalogue currentUser={this.state.currentUser} {...props}    />}>
+                            </Route>
+                            <Route path="/offers"
+                                   render={(props) => <Offers  {...props} />}>
+                            </Route>
+                            <Route component={NotFound}/>
                         </Switch>
                     </div>
                 </Content>

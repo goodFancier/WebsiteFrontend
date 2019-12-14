@@ -6,8 +6,6 @@ import {
 import './AppHeader.css';
 import {Redirect} from 'react-router-dom'
 import {Layout, Menu, Dropdown, Icon, notification} from 'antd';
-import Search from '../common/Search';
-import Questions from '../user/questions/Questions'
 import {signup} from "../util/APIUtils";
 import Usermenu from "./Usermenu";
 import {ACCESS_TOKEN} from "../constants";
@@ -58,8 +56,8 @@ class AppHeader extends Component {
         this.props.history.push(`/users/${this.props.currentUser.username}/profile`);
     }
 
-    redirectToQuestionMenu = () => {
-        this.props.history.push("/questions");
+    redirectToCatalogue = () => {
+        this.props.history.push("/catalogue");
     }
 
     redirectToBucket = () => {
@@ -95,19 +93,13 @@ class AppHeader extends Component {
             <Header className="navbar">
                 <div className="container">
                     <div className="app-title shop-name-title">
-                        <Link to="/">Онлайн магазин</Link>
+                        <Link to="/catalogue">Онлайн магазин</Link>
                     </div>
                     <div className="app-title header-link-margin">
-                        <Link to="/">Акции</Link>
+                        <Link to="/offers">Акции</Link>
                     </div>
                     <div className="app-title header-link-margin">
-                        <Link to="/">Каталог товаров</Link>
-                    </div>
-                    <div className="app-title header-link-margin">
-                        <Link to="/">Наши партнёры</Link>
-                    </div>
-                    <div className="app-title header-link-margin">
-                        <Link to="/">О нас</Link>
+                        <Link onClick={this.redirectToCatalogue}>Каталог товаров</Link>
                     </div>
                     {menuItems}
                 </div>
