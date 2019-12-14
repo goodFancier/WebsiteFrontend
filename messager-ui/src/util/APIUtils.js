@@ -98,3 +98,35 @@ export function getCatalogueOfGoods() {
         method: 'GET'
     });
 }
+
+
+export function addToBucket(userId, goodId) {
+    return request({
+        url: API_BASE_URL + "/addToBucket?userId=" + userId + "&goodId=" + goodId,
+        method: 'GET'
+    });
+}
+
+export function deleteFromUserBucket(userId, goodId) {
+    return request({
+        url: API_BASE_URL + "/deleteFromUserBucket?userId=" + userId + "&goodId=" + goodId,
+        method: 'GET'
+    });
+}
+
+export function getBucketTotalSum(userId) {
+    return request({
+        url: API_BASE_URL + "/getBucketTotalSum?userId=" + userId,
+        method: 'GET'
+    });
+}
+
+export function getRandomGoods() {
+    return request({
+        url: API_BASE_URL + "/getRandomGoods",
+        method: 'GET'
+    });
+}
+
+
+

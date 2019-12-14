@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import './Catalogue.css';
-import {Table, Card, Icon, List} from 'antd';
-import {getCatalogueOfGoods} from "../../util/APIUtils";
+import {Table, Card, Icon, List, Button} from 'antd';
+import {getCatalogueOfGoods, addToBucket} from "../../util/APIUtils";
 import {formatDate} from "../../util/Helpers";
 
 const {Column, ColumnGroup} = Table;
@@ -16,15 +16,13 @@ const IconText = ({type, text}) => (
 
 class Catalogue extends Component {
     state = {
-        query: '',
-        goods: [],
-        lastParticipants: [],
-        loading: false
+        goods: []
     };
 
     constructor(props) {
         super(props);
         this.initCatalogueOfGoods();
+        this.addToBucketEvent = this.addToBucketEvent.bind(this);
     }
 
     initCatalogueOfGoods() {
@@ -43,28 +41,34 @@ class Catalogue extends Component {
         }
     }
 
+    addToBucketEvent(event, goodId) {
+        event.preventDefault();
+        addToBucket(this.props.currentUser.id, goodId).then(response => {
+        }).catch(error => {
+        });
+    }
+
     render() {
 
         return (
             <List className="catalogue-good-list"
-                  grid={{gutter: 16, column: 4}}
+                  grid={{gutter: 1, column: 4}}
                   dataSource={this.state.goods}
                   renderItem={item => (
                       <List.Item
                           key={item.id}
                       >
-                          <Card className="advertisement" hoverable title="Может быть интересно"
+                          <Card className="advertisement" hoverable
                                 style={{width: 240}}
                                 cover={<img alt="example" align="middle"
-                                            src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png"/>}
+                                            src={item.imageUrl}/>}
                                 style={{width: 300, marginTop: 16}}
                                 actions={[
-                                    <div onClick={this.redirectToGood}>
-                                        <button>Посмотреть предложение</button>
-                                    </div>
+                                    <button onClick={(e) => this.addToBucketEvent(e, item.id)}>Добавить в
+                                        корзину</button>
                                 ]}
                           >
-                              <Meta title={item.name} description={'Цена: ' + item.currentPrice + "$"}/>
+                              <Meta title={item.name} description={<div>Цена: {item.currentPrice}$</div>}/>
                           </Card>
                       </List.Item>
                   )}

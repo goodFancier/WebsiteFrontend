@@ -2,3 +2,12 @@
     margin-top: 50px !important;
     margin-left: 50px;
 }
+
+.ant-card-cover {
+    height: 200px !important;
+}
+
+.advertisement img {
+    max-height: 200px;
+    width: auto;
+}

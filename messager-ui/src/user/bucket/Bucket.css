@@ -19,5 +19,9 @@
     width: 50%;
     margin: auto;
     padding-top: 50px;
+}
 
+.bucket-good-list img {
+    max-height: 100px;
+    width: auto;
 }

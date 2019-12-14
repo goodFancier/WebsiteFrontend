@@ -116,7 +116,7 @@ class App extends Component {
                                    render={(props) => <Bucket currentUser={this.state.currentUser} {...props}    />}>
                             </Route>
                             <Route path="/catalogue"
-                                   render={(props) => <Catalogue {...props}    />}>
+                                   render={(props) => <Catalogue currentUser={this.state.currentUser} {...props}    />}>
                             </Route>
                             <Route component={NotFound}/>
                         </Switch>
