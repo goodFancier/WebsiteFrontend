@@ -128,5 +128,10 @@ export function getRandomGoods() {
     });
 }
 
-
+export function loadPublicOffers() {
+    return request({
+        url: API_BASE_URL + "/getPublicOffers",
+        method: 'GET'
+    });
+}
 

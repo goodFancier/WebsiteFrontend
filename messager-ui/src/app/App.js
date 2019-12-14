@@ -13,13 +13,13 @@ import Login from '../user/login/Login';
 import Signup from '../user/signup/Signup';
 import Profile from '../user/profile/Profile';
 import AppHeader from '../common/AppHeader';
-import Sidebar from '../common/Sidebar'
-import Bucket from '../user/bucket/Bucket'
+import Bucket from '../user/bucket/Bucket';
 import NotFound from '../common/NotFound';
-import Catalogue from '../common/Catalogue/Catalogue';
+import Catalogue from '../catalogue/Catalogue';
 import LoadingIndicator from '../common/LoadingIndicator';
 
 import {Layout, notification} from 'antd';
+import Offers from "../offers/Offers";
 
 const {Content} = Layout;
 
@@ -98,7 +98,6 @@ class App extends Component {
                 <AppHeader isAuthenticated={this.state.isAuthenticated}
                            currentUser={this.state.currentUser}
                            onLogout={this.handleLogout}/>
-                <Sidebar className="sidebar"/>
                 <Content className="app-content">
                     <div className="container">
                         <Switch>
@@ -117,6 +116,9 @@ class App extends Component {
                             </Route>
                             <Route path="/catalogue"
                                    render={(props) => <Catalogue currentUser={this.state.currentUser} {...props}    />}>
+                            </Route>
+                            <Route path="/offers"
+                                   render={(props) => <Offers  {...props} />}>
                             </Route>
                             <Route component={NotFound}/>
                         </Switch>

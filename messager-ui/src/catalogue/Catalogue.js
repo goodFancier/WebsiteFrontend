@@ -1,8 +1,8 @@
 import React, {Component} from 'react'
 import './Catalogue.css';
 import {Table, Card, Icon, List, Button} from 'antd';
-import {getCatalogueOfGoods, addToBucket} from "../../util/APIUtils";
-import {formatDate} from "../../util/Helpers";
+import {getCatalogueOfGoods, addToBucket} from "../util/APIUtils";
+import {formatDate} from "../util/Helpers";
 
 const {Column, ColumnGroup} = Table;
 const {Meta} = Card;

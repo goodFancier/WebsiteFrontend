@@ -93,19 +93,13 @@ class AppHeader extends Component {
             <Header className="navbar">
                 <div className="container">
                     <div className="app-title shop-name-title">
-                        <Link to="/">Онлайн магазин</Link>
+                        <Link to="/catalogue">Онлайн магазин</Link>
                     </div>
                     <div className="app-title header-link-margin">
-                        <Link to="/">Акции</Link>
+                        <Link to="/offers">Акции</Link>
                     </div>
                     <div className="app-title header-link-margin">
                         <Link onClick={this.redirectToCatalogue}>Каталог товаров</Link>
-                    </div>
-                    <div className="app-title header-link-margin">
-                        <Link to="/">Наши партнёры</Link>
-                    </div>
-                    <div className="app-title header-link-margin">
-                        <Link to="/">О нас</Link>
                     </div>
                     {menuItems}
                 </div>
